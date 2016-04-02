@@ -50,7 +50,7 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation) {
 
     var user;
     var game;
@@ -76,6 +76,30 @@ myApp.controller('GameCtrl', function ($scope, dataStorage) {
                 callback();
             })
     };
+
+    var posOptions = {timeout: 30000, maximumAge: 2000, enableHighAccuracy: true};
+    $cordovaGeolocation
+        .getCurrentPosition(posOptions)
+        .then(function (position) {
+            $scope.lat  = position.coords.latitude
+            $scope.long = position.coords.longitude
+        }, function(err) {
+            // error
+        });
+    $scope.getLoc = function() {
+        $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function (position) {
+                $scope.lat = position.coords.latitude
+                $scope.long = position.coords.longitude
+            }, function (err) {
+                // error
+            });
+    };
+
+    $cordovaGeolocation.watchPosition(function(position){
+        alert(position);
+    });
 
     var checkForTurn = function () {
 
@@ -979,10 +1003,14 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
     }
 
     $scope.loginGoogle = function () {
+        alert('loginGoogle');
+
         var returnUrl = window.location.href.replace('login', '');
 
         returnUrl = encodeURIComponent(returnUrl);
-        window.location.href = apiURL + "login/google?returnURL=" + returnUrl;
+        alert(returnUrl);
+        window.location.replace(apiURL + "login/google?returnURL=" + returnUrl);
+        // window.location.href = apiURL + "login/google?returnURL=" + returnUrl;
     }
 
 })

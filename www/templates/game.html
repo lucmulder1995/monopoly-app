@@ -13,7 +13,10 @@
     </div>
     <div class="info">
         Je hebt nog {{money}} gouden munten <br><br>
-        {{game.turn.user.displayName}} is nu aan de beurt
+        {{game.turn.user.displayName}} is nu aan de beurt <br>
+        {{lat}} <br>
+        {{long}}
+        <button ng-click="getLoc()">location</button>
     </div>
     <div class="card yourTurn" ng-show="showYourturn">
         <div class="title">
