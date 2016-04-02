@@ -1,0 +1,69 @@
+<ion-view view-title="Monopoly">
+    <ion-content>
+        <div class="startGame" ng-show="showStartGameButtons">
+            <div class="buttons">
+                <!--<div class="weatherImage">-->
+                    <!--<img ng-src="{{pictureSrc}}" alt="">-->
+                <!--</div>-->
+                <div>
+                    <button class="newGame" ng-click="startNewGame()">Nieuw</button>
+                </div>
+                <div>
+                    <button class="joinGame"  ng-click="goToJoinGame()">Meedoen</button>
+                </div>
+                <div class="weather">
+                    {{weatherMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="createNewGame" ng-show="showNewGame">
+            <div class="gameId">
+                {{game._id}}
+            </div>
+            <div class="explanation">
+                <div class="title">
+                    Uitleg:
+                </div>
+                <p>
+                    Laat iedereen die mee wil spelen het ID hierboven invullen op hun telefoon.
+                </p>
+                <p>
+                    Als iedereen is toegevoegd kun je op 'start spel' klikken
+                </p>
+            </div>
+            <img src="img/line.png" alt="" class="line">
+            <div class="joinedPeople">
+                <div ng-repeat="user in game.users">
+                    {{user.user.displayName}}
+                </div>
+            </div>
+            <div class="startButton">
+                <button class="startGameButton" ng-click="startGame()">Start Spel</button>
+            </div>
+        </div>
+        <div class="joinTheGame" ng-show="showJoinGame">
+            <div class="joinGameDiv">
+                <div class="joinGameInput">
+                    <input type="number" ng-model="joinGameId" placeholder="Game ID">
+                </div>
+                <div class="joinGameMessage" ng-show="joinGameFailed">
+                    We kunnen je niet toevoegen aan een game. <br>
+                    Bestaat deze game niet of is hij misschien al begonnen?
+                </div>
+                <div class="joinGameButtonDiv">
+                    <button class="joinGame" ng-click="joinGame(joinGameId)">Meedoen!</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="joinTheGameWaiting" ng-show="showJoinGameWaiting">
+            <div class="text">
+                Wacht tot het spel wordt gestart
+            </div>
+            <div class="loading">
+                <img src="../img/loading-flower.gif" alt="">
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

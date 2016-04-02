@@ -1,0 +1,95 @@
+<ion-view view-title="Monopoly">
+<ion-content class="gameBoard">
+    <div class="board">
+        <div ng-repeat="(key, square) in squares" class="square square-{{key}}" style="{{getStyle(key, square)}}">
+            <div class="userColourContainer">
+                <div ng-repeat="userColour in square.userColours" class="usersColour" style="background-color: {{userColour}}">
+
+                </div>
+            </div>
+
+        </div>
+        {{showYourturn}}
+    </div>
+    <div class="info">
+        Je hebt nog {{money}} gouden munten <br><br>
+        {{game.turn.user.displayName}} is nu aan de beurt <br>
+        {{lat}} <br>
+        {{long}}
+        <button ng-click="getLoc()">location</button>
+    </div>
+    <div class="card yourTurn" ng-show="showYourturn">
+        <div class="title">
+            Jij bent!
+        </div>
+        <div class="turnAmount">
+            Je hebt {{turnAmount}} gegooid
+        </div>
+        <div class="goTo">
+            Ga nu naar {{currentSquare.name}}
+        </div>
+
+        <div class="check" ng-click="arrived()">
+            <img src="../img/check.png" alt="">
+        </div>
+    </div>
+    <div class="card navigation" ng-show="showNavigation">
+        Je hebt 3 gegooid, ga naar Centraal Station
+        <div class="maps">
+
+        </div>
+    </div>
+    <div class="card buy" ng-show="showBuy">
+        <div class="image">
+            <img ng-src="{{currentSquare.picture}}" alt="">
+        </div>
+        <div class="name">
+            Wil je {{currentSquare.name}} kopen voor {{currentSquare.price}} gouden munten?
+        </div>
+        <div class="buttons">
+            <img src="img/check.png" alt="" ng-click="buySquare()" class="check">
+            <img src="img/decline.png" alt="" ng-click="declineSquare()" class="decline">
+        </div>
+
+    </div>
+    <div class="card payday" ng-show="showPayday">
+        <div class="image">
+            <img ng-src="{{currentSquare.picture}}" alt="">
+        </div>
+        <div class="text">
+            Je bent op het vakje van {{currentSquare.owner.displayName}} gekomen, {{currentSquare.name}}. Je moet {{currentSquare.rent}} gouden munten betalen.
+        </div>
+        <div class="buttons">
+            <img src="img/check.png" alt="" class="check" ng-click="pay()">
+        </div>
+    </div>
+    <div class="card confirmation" ng-show="showSelfBuy">
+        <div class="image">
+            <img ng-src="{{currentSquare.picture}}" alt="">
+        </div>
+        <div class="title">
+            Je bent op {{currentSquare.name}} gekomen, dit vakje is al van jouw, je hoeft niks te betalen.
+        </div>
+        <div class="check" ng-click="declineSquare()">
+            <img src="../img/check.png" alt="">
+        </div>
+    </div>
+    <div class="card confirmation" ng-show="showPayConfirmation">
+        <div class="title">
+            Je betaling is gelukt!
+        </div>
+
+        <div class="message">
+            Je hebt nog 100 munten
+        </div>
+        <div class="image">
+
+        </div>
+        <div class="check" ng-click="goToNavigation()">
+            <img src="../img/check.png" alt="">
+        </div>
+    </div>
+
+
+  </ion-content>
+</ion-view>
