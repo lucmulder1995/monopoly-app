@@ -1,0 +1,21 @@
+<ion-view view-title="Monopoly">
+    <ion-content>
+        <div class="login">
+            <div class="title">
+                <h1>Inloggen</h1>
+            </div>
+            <div class="email">
+                <input type="text" ng-model="username" placeholder="gebruikersnaam">
+            </div>
+            <div class="password">
+                <input type="password" ng-model="password"  placeholder="wachtwoord">
+            </div>
+            <div class="loginButton">
+                <img src="../img/login.png" alt="">
+                <div class="github" ng-click="loginGithub()"></div>
+                <div class="google" ng-click="loginGoogle()"></div>
+                <div class="loginBtn" ng-click="login(username, password)"></div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

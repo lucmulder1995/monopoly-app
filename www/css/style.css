@@ -1,0 +1,551 @@
+hr{
+    width: 80%;
+    background-color: white;
+    height: 2px;
+    border: 0;
+}
+
+.square{
+    position: absolute;
+    background-color: #ffffff;
+    border: 1px solid gray;
+    color: black;
+    text-align: center;
+}
+
+.scroll{
+    width: 100%;
+    height: 100%;
+}
+
+.board{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.square-0{
+    bottom: 0;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-1{
+    bottom: 0;
+    right: 25%;
+    width: 25%;
+    height: 12.5%;
+}
+.square-2{
+    bottom: 0;
+    right: 50%;
+    width: 25%;
+    height: 12.5%;
+}
+.square-3{
+    bottom: 0;
+    right: 75%;
+    width: 25%;
+    height: 12.5%;
+}
+.square-4{
+    bottom: 12.5%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-5{
+    bottom: 25%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-6{
+    bottom: 37.5%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-7{
+    bottom: 50%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-8{
+    bottom: 62.5%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-9{
+    top: 12.5%;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-10{
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-11{
+    top: 0;
+    right: 50%;
+    width: 25%;
+    height: 12.5%;
+}
+.square-12{
+    top: 0;
+    right: 25%;
+    width: 25%;
+    height: 12.5%;
+}
+.square-13{
+    top: 0;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-14{
+    top: 12.5%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-15{
+    top: 25%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-16{
+    bottom: 50%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-17{
+    bottom: 37.5%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-18{
+    bottom: 25%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+.square-19{
+    bottom: 12.5%;
+    right: 0;
+    width: 25%;
+    height: 12.5%;
+}
+
+.info{
+    position: absolute;
+    bottom: 12.5%;
+    left: 25%;
+    width: 50%;
+    height: 75%;
+    padding: 10px;
+    background-color: #009688;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 6vw;
+    line-height: 120%;
+    text-align: center;
+
+}
+.image img{
+    width: 50%;
+}
+
+.login{
+    background-color: #5E35B1;
+    width: 100%;
+    height: 100%;
+}
+
+.login .title{
+    padding: 50px 20px 10px 20px;
+    text-align: center;
+}
+
+.login .title h1{
+    color: white;
+    font-family: 'Indie Flower', cursive;
+}
+
+.email{
+    padding: 5px;
+}
+
+.password{
+    padding: 5px;
+}
+
+.email input{
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right:auto;
+    width: 60%;
+    text-align: center;
+}
+
+.password input{
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right:auto;
+    width: 60%;
+    text-align: center;
+}
+
+.btn{
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%);
+    background-color: honeydew;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+
+.gameBoard .card{
+    position: absolute;
+    width: 100%;
+    height:100%;
+    top:  0;
+    left: 0;
+    margin: 0;
+    padding: 10px 20px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 9vw;
+    color: white;
+}
+
+.gameBoard .card.yourTurn{
+    font-size: 50px;
+    text-align: center;
+    padding-top: 30%;
+    background-color: #E91E63;
+
+}
+
+.gameBoard .card.navigation{
+    font-size: 9vw;
+    text-align: center;
+    padding-top: 10%;
+    background-color: #3F51B5;
+    line-height: 50px;
+}
+
+
+.gameBoard .card.navigation .maps{
+    width: 100%;
+    height: 70%;
+    margin-top: 10%;
+    background-color: blue;
+}
+
+.gameBoard .card.buy{
+    font-size: 9vw;
+    text-align: center;
+    padding-top: 10%;
+    background-color: #4CAF50;
+    line-height: 50px;
+}
+.gameBoard .card.buy .buttons{
+    display: block;
+}
+
+.gameBoard .card.buy .buttons .check{
+    display: inline-block;
+    width: 20%;
+}
+
+.gameBoard .card.buy .buttons .decline{
+    display: inline-block;
+    width: 20%;
+}
+
+.gameBoard .card.payday{
+    font-size: 9vw;
+    text-align: center;
+    padding-top: 10%;
+    background-color: #F44336;
+    line-height: 50px;
+}
+
+.gameBoard .card.payday .buttons{
+    display: block;
+}
+
+.gameBoard .card.payday .buttons .check{
+    display: inline-block;
+    width: 20%;
+}
+
+.gameBoard .card.confirmation{
+    font-size: 9vw;
+    text-align: center;
+    padding-top: 10%;
+    background-color: #2196F3;
+    line-height: 50px;
+}
+
+.gameBoard .card .check img{
+    margin-top: 50%;
+    width: 20%;
+}
+
+.gameBoard .confirmation .check img{
+    margin-top: 5%;
+    width: 20%;
+}
+
+.gameBoard .yourTurn .check img{
+    /*margin-top: 50%;*/
+    width: 100%;
+}
+
+.gameBoard .yourTurn .check{
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 20%;
+}
+
+.startGame{
+    background-color: #009688;
+    width: 100%;
+    height: 100%;
+}
+
+.startGame .buttons{
+    padding-top: 30vh;
+
+}
+
+.startGame .newGame{
+    margin-left: 50%;
+    width: 60%;
+    transform: translate(-50%);
+    border-radius: 5px;
+    background-color: white;
+    border: 0;
+    padding: 5px 30px;
+    font-family: 'Indie Flower', cursive;
+    font-size: 11vw;
+    color: #009688;
+
+}
+
+.startGame .joinGame{
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%);
+    border-radius: 5px;
+    background-color: white;
+    border: 0;
+    padding: 5px 30px;
+    width: 60%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 11vw;
+    color: #009688;
+}
+
+.createNewGame{
+    background-color: #009688;
+    width: 100%;
+    height: 100%;
+    font-family: 'Indie Flower', cursive;
+}
+
+.createNewGame .gameId{
+    font-size: 11vw;
+    color: white;
+    text-align: center;
+    padding: 10% 0 2%;
+}
+
+.createNewGame .explanation{
+    font-size: 6vw;
+    text-align: center;
+    color: white;
+    line-height: 130%;
+    padding: 4% 10%;
+}
+
+.createNewGame .explanation .title{
+    font-size: 8vw;
+    margin-bottom: 5%;
+}
+
+.createNewGame .joinedPeople{
+    font-size: 6vw;
+    text-align: center;
+    color: white;
+    line-height: 130%;
+    padding: 4% 10%;
+}
+
+.createNewGame .startGameButton{
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%);
+    border-radius: 5px;
+    background-color: white;
+    border: 0;
+    padding: 5px 30px;
+    width: 60%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 8vw;
+    color: #009688;
+}
+
+.joinTheGame{
+    background-color: #009688;
+    width: 100%;
+    height: 100%;
+    font-family: 'Indie Flower', cursive;
+}
+
+.joinTheGame input{
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right:auto;
+    width: 60%;
+    text-align: center;
+
+}
+
+
+.joinTheGame .joinGame{
+    margin-left: 50%;
+    margin-top: 10px;
+    transform: translate(-50%);
+    border-radius: 5px;
+    background-color: white;
+    border: 0;
+    padding: 5px 30px;
+    width: 60%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 11vw;
+    color: #009688;
+}
+
+.joinTheGame .joinGameDiv{
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translate(0, -50%)
+}
+
+.joinTheGame .joinGameMessage{
+    text-align: center;
+    color: white;
+    font-size: 6vw;
+    line-height: 120%;
+    padding: 5% 0;
+}
+
+.joinTheGameWaiting{
+    background-color: #009688;
+    width: 100%;
+    height: 100%;
+    font-family: 'Indie Flower', cursive;
+}
+
+.joinTheGameWaiting .text{
+    font-size: 10vw;
+    text-align: center;
+    color: white;
+    line-height: 130%;
+    padding: 10% 10%;
+}
+
+.joinTheGameWaiting .loading{
+    position: absolute;
+    left:50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.line{
+    width: 90%;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+.loginButton img{
+    position: absolute;
+    bottom: 40%;
+    width: 100%;
+}
+
+.loginButton .github{
+    position: absolute;
+    bottom: 42%;
+    width: 10%;
+    height: 15%;
+    left: 19%;
+}
+
+.loginButton .google {
+    position: absolute;
+    bottom: 41%;
+    left: 43%;
+    width: 11%;
+    height: 15%;
+}
+
+.loginButton .loginBtn {
+    position: absolute;
+    bottom: 41%;
+    width: 10%;
+    height: 15%;
+    left: 70%;
+}
+
+.weather{
+    position: absolute;
+    bottom: 5%;
+    text-align: center;
+    font-family: 'Indie Flower', cursive;
+    font-size: 8vw;
+    color: white;
+    line-height: 120%;
+}
+
+.userColourContainer{
+    display: block;
+}
+
+.usersColour{
+    display: inline-block;
+    float: left;
+    width: 5vw;
+    height: 5vw;
+    border-radius: 50%;
+    margin: 0.6vw;
+}
+
+.turnAmount{
+    font-family: 'Indie Flower', cursive;
+    line-height: 120%;
+    margin-top: 12vw;
+}
+
+.goTo{
+    font-family: 'Indie Flower', cursive;
+    line-height: 120%;
+}
+
+
+
+
