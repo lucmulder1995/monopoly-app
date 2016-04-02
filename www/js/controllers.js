@@ -1006,7 +1006,7 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
         alert('loginGoogle');
 
         var returnUrl = window.location.href.replace('login', '');
-
+        alert(returnUrl);
         returnUrl = encodeURIComponent(returnUrl);
         alert(returnUrl);
         window.location.replace(apiURL + "login/google?returnURL=" + returnUrl);
