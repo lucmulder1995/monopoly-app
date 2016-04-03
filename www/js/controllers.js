@@ -989,7 +989,8 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
                     }
 
                     console.log('no active game found, start new game');
-                    window.location.href = "#/app/startGame";
+                    window.open('#/app/startGame', '_self ', 'location=yes');
+                    //window.location.href = "#/app/startGame";
 
                 }
                 console.log(data);
