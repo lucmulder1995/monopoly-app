@@ -955,6 +955,7 @@ myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
 myApp.controller('LoginCtrl', function ($scope, dataStorage) {
 
     $scope.login = function (username, password) {
+        console.log('inloggen', username, password);
         $.ajax({
                 method: "POST",
                 url: apiURL + 'login',
