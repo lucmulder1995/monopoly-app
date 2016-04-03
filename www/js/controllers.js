@@ -56,20 +56,20 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
     var game;
     var updateUser = function (callback) {
         $.ajax({
-                method: "GET",
-                url: apiURL + 'users/currentUser',
-                statusCode: {
-                    500: function () {
-                        console.log('Het is niet gelukt de user op te halen');
-                    },
-                    403: function () {
-                        window.location.href = "#/app/login";
-                    }
+            method: "GET",
+            url: apiURL + 'users/currentUser',
+            statusCode: {
+                500: function () {
+                    console.log('Het is niet gelukt de user op te halen');
                 },
-                xhrFields: {
-                    withCredentials: true
+                403: function () {
+                    window.location.href = "#/app/login";
                 }
-            })
+            },
+            xhrFields: {
+                withCredentials: true
+            }
+        })
             .done(function (data) {
                 // user = data;
                 dataStorage.setUser(data);
