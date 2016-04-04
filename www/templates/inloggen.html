@@ -11,9 +11,8 @@
                 <input type="password" ng-model="password"  placeholder="wachtwoord">
             <!--<button ng-click="login(username, password)">Local login</button>-->
             <div class="loginButton">
-                <img src="img/login.png" alt="" ng-click="signup(username, password)"  style="{{getLoginStyle()}}">
-                <div class="github" ng-click=""  style="{{getSignupButtonStyle()}}"></div>
-                <div class="google" ng-click=""></div>
+                <img src="img/login.png" alt="" style="{{getLoginStyle()}}">
+                <div ng-click="signup(username, password)"   style="{{getSignupButtonStyle()}}"></div>
                 <div class="loginBtn" ng-click="login(username, password)"  style="{{getLoginButtonStyle()}}"></div>
             </div>
 
