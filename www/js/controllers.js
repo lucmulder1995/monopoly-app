@@ -50,7 +50,7 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $cordovaVibration) {
 
     var user;
     var game;
@@ -242,6 +242,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
 
                 if (game.turn.user._id == user._id) {
+                    $cordovaVibration.vibrate(500);
                     $scope.showYourturn = true;
                     $scope.showNavigation = false;
                     $scope.showBuy = false;
@@ -405,6 +406,10 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             };
 
             $scope.arrived = function () {
+                $cordovaVibration.vibrate(100);
+                setTimeout(function(){
+                    $cordovaVibration.vibrate(100);
+                }, 150);
                 if (dataStorage.getCurrentSquare().owner == undefined) {
                     console.log('kopen');
                     $scope.showYourturn = false;
