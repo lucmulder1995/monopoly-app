@@ -351,6 +351,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                 } else {
                     //kopen
                     $scope.checkSrc = loadImgSrc;
+                    $scope.$apply();
                     $.ajax({
                             type: "PUT",
                             url: apiURL + 'games/' + dataStorage.getGame()._id + '/squares/' + dataStorage.getCurrentSquare().id,
@@ -456,6 +457,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
 
             $scope.declineSquare = function () {
                 $scope.declineSrc = loadImgSrc;
+                $scope.$apply();
                 $.ajax({
                         type: "PUT",
                         url: apiURL + 'games/' + dataStorage.getGame()._id,
@@ -538,6 +540,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
 
             $scope.pay = function () {
                 $scope.checkSrc = loadImgSrc;
+                $scope.$apply();
 
                 $.ajax({
                         type: "PUT",
