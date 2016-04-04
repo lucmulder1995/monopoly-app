@@ -56,20 +56,20 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
     var game;
     var updateUser = function (callback) {
         $.ajax({
-                method: "GET",
-                url: apiURL + 'users/currentUser',
-                statusCode: {
-                    500: function () {
-                        console.log('Het is niet gelukt de user op te halen');
-                    },
-                    403: function () {
-                        window.location.href = "#/app/login";
-                    }
+            method: "GET",
+            url: apiURL + 'users/currentUser',
+            statusCode: {
+                500: function () {
+                    console.log('Het is niet gelukt de user op te halen');
                 },
-                xhrFields: {
-                    withCredentials: true
+                403: function () {
+                    window.location.href = "#/app/login";
                 }
-            })
+            },
+            xhrFields: {
+                withCredentials: true
+            }
+        })
             .done(function (data) {
                 // user = data;
                 dataStorage.setUser(data);
@@ -955,6 +955,7 @@ myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
 myApp.controller('LoginCtrl', function ($scope, dataStorage) {
 
     $scope.login = function (username, password) {
+        console.log('inloggen', username, password);
         $.ajax({
                 method: "POST",
                 url: apiURL + 'login',
@@ -988,7 +989,8 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
                     }
 
                     console.log('no active game found, start new game');
-                    window.location.href = "#/app/startGame";
+                    window.open('#/app/startGame', '_self ', 'location=yes');
+                    //window.location.href = "#/app/startGame";
 
                 }
                 console.log(data);

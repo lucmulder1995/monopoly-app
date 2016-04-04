@@ -227,12 +227,11 @@ hr{
     color: white;
 }
 
-.gameBoard .card.yourTurn{
+.gameBoard .card.yourTurn {
     font-size: 50px;
     text-align: center;
-    padding-top: 30%;
+    padding-top: 10%;
     background-color: #E91E63;
-
 }
 
 .gameBoard .card.navigation{
