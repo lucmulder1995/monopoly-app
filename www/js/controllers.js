@@ -92,6 +92,12 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
             .then(function (position) {
                 $scope.lat = position.coords.latitude
                 $scope.long = position.coords.longitude
+                console.log('distance', distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long));
+
+                if($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 10){
+                    $scope.arrived();
+                }
+
             }, function (err) {
                 // error
             });
@@ -626,6 +632,16 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
             }
         }
     });
+
+    function distance(lat1, lon1, lat2, lon2) {
+        var p = 0.017453292519943295;    // Math.PI / 180
+        var c = Math.cos;
+        var a = 0.5 - c((lat2 - lat1) * p)/2 +
+            c(lat1 * p) * c(lat2 * p) *
+            (1 - c((lon2 - lon1) * p))/2;
+
+        return 12742000 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
+    }
 
     socket.on('nextTurn', function (data) {
         if (dataStorage.getGame() != undefined && dataStorage.getGame()._id == data) {
