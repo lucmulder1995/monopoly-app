@@ -409,7 +409,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 $cordovaVibration.vibrate(100);
                 setTimeout(function(){
                     $cordovaVibration.vibrate(100);
-                }, 150);
+                }, 250);
                 if (dataStorage.getCurrentSquare().owner == undefined) {
                     console.log('kopen');
                     $scope.showYourturn = false;
