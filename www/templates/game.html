@@ -14,9 +14,6 @@
     <div class="info">
         Je hebt nog {{money}} gouden munten <br><br>
         {{game.turn.user.displayName}} is nu aan de beurt <br>
-        {{lat}} <br>
-        {{long}}
-        <button ng-click="getLoc()">location</button>
     </div>
     <div class="card yourTurn" ng-show="showYourturn">
         <div class="title">
@@ -39,9 +36,9 @@
 
         </div>
     </div>
-    <div class="card buy" ng-show="showBuy" on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
+    <div class="card buy" ng-show="showBuy">
         <div class="image">
-            <img ng-src="{{currentSquare.picture}}" alt="">
+            <img ng-src="{{currentSquare.picture}}" alt="" on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
         </div>
         <div class="name">
             Wil je {{currentSquare.name}} kopen voor {{currentSquare.price}} gouden munten?

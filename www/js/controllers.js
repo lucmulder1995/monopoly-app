@@ -419,8 +419,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                     $scope.showPayConfirmation = false;
                     $scope.showSelfBuy = true;
 
-                    $scope.startWatching($scope.declineSquare);
-
                 } else {
                     console.log('betalen');
                     $scope.showYourturn = false;
