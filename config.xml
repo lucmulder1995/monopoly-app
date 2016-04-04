@@ -25,8 +25,8 @@
     <allow-navigation href="http://*/*" />
 
     <platform name="android">
-        <icon density="hdpi" src="resources/icon.png" />
-        <splash density="port-hdpi" src="resources/splash.png" />
+        <icon density="hdpi" src="resources/android/icon/icon.png" />
+        <splash density="port-hdpi" src="resources/android/splash/splash.png" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="https://github.com/apache/cordova-plugin-whitelist.git" />
     <plugin name="cordova-plugin-device-motion" value="org.apache.cordova.AccelListener" spec="https://github.com/apache/cordova-plugin-device-motion.git"/>
