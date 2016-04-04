@@ -1,5 +1,12 @@
 <ion-view view-title="Settings">
 <ion-content>
-    <h1>Settings</h1>
+    <div class="settings">
+        <div class="title">
+            Instellingen
+        </div>
+        <div class="content">
+            <label for="shake">Trillen</label> <input type="checkbox" ng-model="shake" id="shake" ng-change="saveShake(shake)">
+        </div>
+    </div>
   </ion-content>
 </ion-view>

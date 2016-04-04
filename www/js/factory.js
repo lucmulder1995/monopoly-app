@@ -70,6 +70,12 @@ myApp.factory('dataStorage', function () {
         },
         getPassword: function(){
             return data.password;
+        },setShake: function(shake){
+            data.shake = shake;
+            saveData;
+        },
+        getShake: function(){
+            return data.shake;
         }
     };
 });

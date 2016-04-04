@@ -545,6 +545,18 @@ hr{
     line-height: 120%;
 }
 
+.settings{
+    background-color: #E91E63;
+    width: 100%;
+    height: 100%;
+}
+
+.settings .title{
+    font-family: 'Indie Flower', cursive;
+    line-height: 120%;
+    color: white;
+    font-size: 7vw;
+}
 
 
 .sprite { background: url('../img/sprite.png') no-repeat top left; height: 300px;  }

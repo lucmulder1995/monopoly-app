@@ -58,7 +58,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
     $scope.setSelectedSquare = function(square){
         console.log('set selected', square);
         $scope.selectedSquare = square.name;
-        $scope.$apply();
+        // $scope.$apply();
     }
 
     $scope.options = {
@@ -242,7 +242,9 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
 
                 if (game.turn.user._id == user._id) {
-                    $cordovaVibration.vibrate(500);
+                    if(dataStorage.getShake()){
+                        $cordovaVibration.vibrate(500);
+                    }
                     $scope.showYourturn = true;
                     $scope.showNavigation = false;
                     $scope.showBuy = false;
@@ -406,10 +408,13 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             };
 
             $scope.arrived = function () {
-                $cordovaVibration.vibrate(100);
-                setTimeout(function(){
+                if(dataStorage.getShake()){
                     $cordovaVibration.vibrate(100);
-                }, 250);
+                    setTimeout(function(){
+                        $cordovaVibration.vibrate(100);
+                    }, 250);
+                }
+
                 if (dataStorage.getCurrentSquare().owner == undefined) {
                     console.log('kopen');
                     $scope.showYourturn = false;
@@ -847,8 +852,10 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
     });
 });
 
-myApp.controller('SettingsCtrl', function ($scope) {
-
+myApp.controller('SettingsCtrl', function ($scope, dataStorage) {
+    $scope.saveShake = function(shake){
+        dataStorage.setShake(shake);
+    }
 })
 
 myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
