@@ -187,8 +187,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             .then(function (position) {
                 $scope.lat = position.coords.latitude
                 $scope.long = position.coords.longitude
-                console.log('distance', distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long));
-
                 if ($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 25) {
                     $scope.arrived();
                 }
@@ -229,7 +227,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 game = data;
                 $scope.game = game;
 
-                console.log('checkForTurn');
+                console.log('checkorTurn');
                 console.log(game);
                 console.log(game.turn.user._id);
                 console.log(user._id);
@@ -256,7 +254,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                             for (var u = 0; u < square.users.length; u++) {
                                 for (var gu = 0; gu < game.users.length; gu++) {
                                     if (square.users[u]._id == game.users[gu].user._id) {
-                                        console.log('game users', game.users);
                                         square.userColours.push(game.users[gu].color);
                                     }
                                 }
@@ -266,14 +263,11 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                 }
                             }
 
-                            console.log('square', square);
 
                             $scope.squares.push(square);
                         }
                     }
 
-                    console.log('currentSquare', dataStorage.getCurrentSquare());
-                    console.log('indexOf currentSquare', $scope.squares.indexOf(dataStorage.getCurrentSquare()));
 
 
                     // if (($scope.squares.indexOf(dataStorage.getCurrentSquare()) + $scope.turnAmount) > $scope.squares.length) {
@@ -312,7 +306,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
         if (game == undefined) {
             window.location.href = "#/app/startGame";
         } else {
-            console.log(game);
             $scope.squares = [];
 
             for (var s = 0; s < game.streets.length; s++) {
@@ -515,7 +508,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                                 for (var u = 0; u < square.users.length; u++) {
                                                     for (var gu = 0; gu < game.users.length; gu++) {
                                                         if (square.users[u]._id == game.users[gu].user._id) {
-                                                            console.log('game users', game.users);
                                                             square.userColours.push(game.users[gu].color);
                                                         }
                                                     }
@@ -525,7 +517,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                                     }
                                                 }
 
-                                                console.log('square', square);
 
                                                 $scope.squares.push(square);
                                             }
@@ -556,7 +547,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             $scope.declineSquare = function () {
                 $scope.declineSrc = loadImgSrc;
                 // $scope.$apply();
-                
+
                 $.ajax({
                         type: "PUT",
                         url: apiURL + 'games/' + dataStorage.getGame()._id,
@@ -601,7 +592,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                     for (var u = 0; u < square.users.length; u++) {
                                         for (var gu = 0; gu < game.users.length; gu++) {
                                             if (square.users[u]._id == game.users[gu].user._id) {
-                                                console.log('game users', game.users);
                                                 square.userColours.push(game.users[gu].color);
                                             }
                                         }
@@ -611,7 +601,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                         }
                                     }
 
-                                    console.log('square', square);
 
                                     $scope.squares.push(square);
                                 }
@@ -707,7 +696,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                             for (var u = 0; u < square.users.length; u++) {
                                                 for (var gu = 0; gu < game.users.length; gu++) {
                                                     if (square.users[u]._id == game.users[gu].user._id) {
-                                                        console.log('game users', game.users);
                                                         square.userColours.push(game.users[gu].color);
                                                     }
                                                 }
@@ -717,7 +705,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                                 }
                                             }
 
-                                            console.log('square', square);
 
                                             $scope.squares.push(square);
                                         }
