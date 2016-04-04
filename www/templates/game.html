@@ -1,7 +1,7 @@
 <ion-view view-title="Monopoly">
 <ion-content class="gameBoard">
     <div class="board">
-        <div ng-repeat="(key, square) in squares" class="square square-{{key}}" style="{{getStyle(key, square)}}" ng-click="selectedSquare = square.name">
+        <div ng-repeat="(key, square) in squares" class="square square-{{key}}" style="{{getStyle(key, square)}}" ng-click="setSelectedSquare(square)">
             <div class="userColourContainer">
                 <div ng-repeat="userColour in square.userColours" class="usersColour" style="background-color: {{userColour}}">
 
