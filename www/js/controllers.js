@@ -50,7 +50,7 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $ionicPlatform) {
 
     var user;
     var game;
