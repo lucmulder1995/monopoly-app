@@ -555,7 +555,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
             $scope.declineSquare = function () {
                 $scope.declineSrc = loadImgSrc;
-                $scope.$apply();
+                // $scope.$apply();
+                
                 $.ajax({
                         type: "PUT",
                         url: apiURL + 'games/' + dataStorage.getGame()._id,
