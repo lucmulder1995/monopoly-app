@@ -1262,26 +1262,25 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
     $scope.loginGoogle = function () {
         alert('loginGoogle');
 
-
-        $scope.username = dataStorage.getUsername();
-        $scope.password = dataStorage.getPassword();
-
-        $scope.savePassword = function(password){
-            dataStorage.setPassword(password);
-            console.log('save password', dataStorage.getPassword());
-        }
-
-        $scope.saveUsername = function(username){
-            dataStorage.setPassword(username);
-            console.log('save username', dataStorage.getUsername());
-        }
-
         var returnUrl = window.location.href.replace('login', '');
         alert(returnUrl);
         returnUrl = encodeURIComponent(returnUrl);
         alert(returnUrl);
         window.location.replace(apiURL + "login/google?returnURL=" + returnUrl);
         // window.location.href = apiURL + "login/google?returnURL=" + returnUrl;
+    }
+
+    $scope.username = dataStorage.getUsername();
+    $scope.password = dataStorage.getPassword();
+
+    $scope.savePassword = function(password){
+        dataStorage.setPassword(password);
+        console.log('save password', dataStorage.getPassword());
+    }
+
+    $scope.saveUsername = function(username){
+        dataStorage.setPassword(username);
+        console.log('save username', dataStorage.getUsername());
     }
 
 })
