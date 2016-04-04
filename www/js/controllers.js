@@ -94,7 +94,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                 $scope.long = position.coords.longitude
                 console.log('distance', distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long));
 
-                if($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 10){
+                if($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 25){
                     $scope.arrived();
                 }
 
