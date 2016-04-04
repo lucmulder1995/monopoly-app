@@ -701,7 +701,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                 }
                             }
 
-                            $scope.checkSrc = checkImgSrck;
+                            $scope.checkSrc = checkImgSrc;
 
                             $scope.showYourturn = false;
                             $scope.showNavigation = false;
