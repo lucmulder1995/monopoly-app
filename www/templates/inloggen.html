@@ -12,7 +12,7 @@
             </div><button ng-click="loginGoogle()">Login with google</button>
             <button ng-click="login(username, password)">Local login</button>
             <div class="loginButton">
-                <img src="img/login.png" alt="">
+                <img src="img/login.png" alt="" style="{{getLoginStyle()}}">
                 <div class="github" ng-click="loginGithub()"></div>
                 <div class="google" ng-click="loginGoogle()"></div>
                 <div class="loginBtn" ng-click="login(username, password)"></div>

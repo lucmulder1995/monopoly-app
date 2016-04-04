@@ -982,6 +982,11 @@ myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
 })
 
 myApp.controller('LoginCtrl', function ($scope, dataStorage) {
+    var screenheight = screen.height;
+
+    $scope.getLoginStyle = function(){
+        return "position: absolute; top: " + (screenheight * 0.6)  + "; width: 100%;";
+    }
 
     $scope.login = function (username, password) {
         console.log('inloggen', username, password);
