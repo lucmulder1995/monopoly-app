@@ -97,9 +97,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
             });
     };
 
-    $cordovaGeolocation.watchPosition(function(position){
-        alert(position);
-    });
+    setInterval($scope.getLoc, 1000);
 
     var checkForTurn = function () {
 
