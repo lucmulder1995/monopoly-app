@@ -988,6 +988,14 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
         return "position: absolute; top: " + (screenheight * 0.6)  + "px; width: 100%;";
     }
 
+    $scope.getLoginButtonStyle = function(){
+        return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 19%; ";
+    }
+
+    $scope.getSignupButtonStyle = function(){
+        return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 70%; ";
+    }
+
     $scope.login = function (username, password) {
         console.log('inloggen', username, password);
         $.ajax({
