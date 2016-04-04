@@ -38,7 +38,8 @@
     </div>
     <div class="card buy" ng-show="showBuy">
         <div class="image">
-            <img ng-src="{{currentSquare.picture}}" alt="">
+            <div class='sprite {{currentSquare.picture}}'></div>
+            <!--<img ng-src="{{currentSquare.picture}}" alt="">-->
         </div>
         <div class="name"  on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
             Wil je {{currentSquare.name}} kopen voor {{currentSquare.price}} gouden munten?
@@ -51,7 +52,8 @@
     </div>
     <div class="card payday" ng-show="showPayday">
         <div class="image">
-            <img ng-src="{{currentSquare.picture}}" alt="">
+            <div class='sprite {{currentSquare.picture}}'></div>
+            <!--<img ng-src="{{currentSquare.picture}}" alt="">-->
         </div>
         <div class="text">
             Je bent op het vakje van {{currentSquare.owner.displayName}} gekomen, {{currentSquare.name}}. Je moet {{currentSquare.rent}} gouden munten betalen.
@@ -62,7 +64,8 @@
     </div>
     <div class="card confirmation" ng-show="showSelfBuy">
         <div class="image">
-            <img ng-src="{{currentSquare.picture}}" alt="">
+            <div class='sprite {{currentSquare.picture}}'></div>
+            <!--<img ng-src="{{currentSquare.picture}}" alt="">-->
         </div>
         <div class="title">
             Je bent op {{currentSquare.name}} gekomen, dit vakje is al van jouw, je hoeft niks te betalen.

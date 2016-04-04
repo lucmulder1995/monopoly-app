@@ -547,4 +547,37 @@ hr{
 
 
 
-
+.sprite { background: url('../img/sprite.png') no-repeat top left; width: 512px; height: 512px;  }
+.sprite.fontein { background-position: 0 0; width: 626px; height: 626px; }
+.sprite.goudenDraak { background-position: -636px 0; }
+.sprite.ionic { background-position: -1158px 0; width: 128px; height: 128px; }
+.sprite.janDeGroot { background-position: -1296px 0; }
+.sprite.jeronimusBoschAtelier { background-position: -1818px 0; width: 200px; height: 200px; }
+.sprite.line { background-position: -2028px 0; width: 1024px; height: 80px; }
+.sprite.loading-flower { background-position: -3062px 0; width: 64px; height: 62px; }
+.sprite.login { background-position: -3136px 0; width: 1600px; height: 478px; }
+.sprite.lush { background-position: -4746px 0; height: 411px; }
+.sprite.login { background-position: -5268px 0; width: 2025px; height: 605px; }
+.sprite.paultje { background-position: -7303px 0; width: 250px; height: 250px; }
+.sprite.rain { background-position: -7563px 0; width: 1267px; height: 771px; }
+.sprite.sintJansKathedraal { background-position: -8840px 0; width: 500px; height: 500px; }
+.sprite.snelleStraat { background-position: -9350px 0; width: 200px; height: 175px; }
+.sprite.snow { background-position: -9560px 0; width: 872px; height: 588px; }
+.sprite.stadhuis { background-position: -10442px 0; width: 1200px; height: 1200px; }
+.sprite.sun { background-position: -11652px 0; width: 2400px; height: 2392px; }
+.sprite.torro { background-position: -14062px 0; width: 626px; height: 626px; }
+.sprite.tumTum { background-position: -14698px 0; width: 566px; height: 536px; }
+.sprite.tunder { background-position: -15274px 0; width: 912px; height: 907px; }
+.sprite.uilenburgstraatje { background-position: -16196px 0; width: 592px; height: 338px; }
+.sprite.VVV { background-position: -16798px 0; }
+.sprite.zoeteLieveGerritje { background-position: -17320px 0; }
+.sprite.begijnstraatje { background-position: -17842px 0; width: 571px; height: 321px; }
+.sprite.bieb { background-position: -18423px 0; width: 626px; height: 626px; }
+.sprite.centraalStation { background-position: -19059px 0; width: 2000px; height: 1600px; }
+.sprite.check { background-position: -21069px 0; width: 491px; }
+.sprite.cloud { background-position: -21570px 0; width: 784px; height: 329px; }
+.sprite.deBrug { background-position: -22364px 0; width: 626px; height: 626px; }
+.sprite.decline { background-position: -23000px 0; width: 580px; height: 587px; }
+.sprite.dieske { background-position: -23590px 0; width: 500px; height: 500px; }
+.sprite.dieze { background-position: -24100px 0; width: 600px; height: 600px; }
+.sprite.extreme { background-position: -24710px 0; width: 311px; height: 366px; }
