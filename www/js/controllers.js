@@ -123,7 +123,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
         if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation) {
             $scope.stopWatching();  // Stop watching because it will start triggering like hell
             console.log('shake detected');
-            callback();
+
             // setTimeout($scope.startWatching(), 1000);  // Again start watching after 1 sex
 
             // Clean previous measurements after succesfull shake detection, so we can do it next time
@@ -132,6 +132,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 y: null,
                 z: null
             }
+
+            callback();
 
         } else {
             // On first measurements set it as the previous one
