@@ -50,10 +50,110 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion) {
 
     var user;
     var game;
+
+    var motionOptions = {
+        frequency: 100, // Measure every 100ms
+        deviation : 25  // We'll use deviation to determine the shake event, best values in the range between 25 and 30
+    };
+
+    // Current measurements
+    $scope.measurements = {
+        x : null,
+        y : null,
+        z : null,
+        timestamp : null
+    }
+
+    // Previous measurements
+    $scope.previousMeasurements = {
+        x : null,
+        y : null,
+        z : null,
+        timestamp : null
+    }
+
+    $scope.watch = null;
+
+    // Start measurements when Cordova device is ready
+    $ionicPlatform.ready(function() {
+
+        //Start Watching method
+        $scope.startWatching = function(callback) {
+
+            // Device motion configuration
+            $scope.watch = $cordovaDeviceMotion.watchAcceleration($scope.options);
+
+            // Device motion initilaization
+            $scope.watch.then(null, function(error) {
+                console.log('Error');
+            },function(result) {
+
+                // Set current data
+                $scope.measurements.x = result.x;
+                $scope.measurements.y = result.y;
+                $scope.measurements.z = result.z;
+                $scope.measurements.timestamp = result.timestamp;
+
+                // Detecta shake
+                $scope.detectShake(result, callback);
+
+            });
+        };
+
+        // Stop watching method
+        $scope.stopWatching = function() {
+            $scope.watch.clearWatch();
+        }
+
+        // Detect shake method
+        $scope.detectShake = function(result, callback) {
+
+            //Object to hold measurement difference between current and old data
+            var measurementsChange = {};
+
+            // Calculate measurement change only if we have two sets of data, current and old
+            if ($scope.previousMeasurements.x !== null) {
+                measurementsChange.x = Math.abs($scope.previousMeasurements.x, result.x);
+                measurementsChange.y = Math.abs($scope.previousMeasurements.y, result.y);
+                measurementsChange.z = Math.abs($scope.previousMeasurements.z, result.z);
+            }
+
+            // If measurement change is bigger then predefined deviation
+            if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation) {
+                $scope.stopWatching();  // Stop watching because it will start triggering like hell
+                console.log('shake detected');
+                callback();
+                setTimeout($scope.startWatching(), 1000);  // Again start watching after 1 sex
+
+                // Clean previous measurements after succesfull shake detection, so we can do it next time
+                $scope.previousMeasurements = {
+                    x: null,
+                    y: null,
+                    z: null
+                }
+
+            } else {
+                // On first measurements set it as the previous one
+                $scope.previousMeasurements = {
+                    x: result.x,
+                    y: result.y,
+                    z: result.z
+                }
+            }
+
+        }
+
+    });
+
+    $scope.$on('$ionicView.beforeLeave', function(){
+        $scope.watch.clearWatch(); // Turn off motion detection watcher
+    });
+
+
     var updateUser = function (callback) {
         $.ajax({
             method: "GET",
@@ -330,6 +430,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                     $scope.showPayConfirmation = false;
                     $scope.showSelfBuy = true;
 
+                    $scope.startWatching($scope.declineSquare);
+
                 }else {
                     console.log('betalen');
                     $scope.showYourturn = false;
@@ -339,6 +441,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                     $scope.showBuyConfirmation = false;
                     $scope.showPayConfirmation = false;
                     $scope.showSelfBuy = false;
+
+                    $scope.startWatching($scope.pay);
 
                 }
             };
