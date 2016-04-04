@@ -23,7 +23,7 @@
     <allow-navigation href="*" />
     <allow-navigation href="file://*/*" />
     <allow-navigation href="http://*/*" />
-    <access origin="*" />
+
     <platform name="android">
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
@@ -45,4 +45,5 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="https://github.com/apache/cordova-plugin-whitelist.git" />
+    <access origin="*" />
 </widget>
