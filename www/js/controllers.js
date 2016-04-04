@@ -1268,10 +1268,12 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
 
         $scope.savePassword = function(password){
             dataStorage.setPassword(password);
+            console.log('save password', dataStorage.getPassword());
         }
 
         $scope.saveUsername = function(username){
             dataStorage.setPassword(username);
+            console.log('save username', dataStorage.getUsername());
         }
 
         var returnUrl = window.location.href.replace('login', '');
