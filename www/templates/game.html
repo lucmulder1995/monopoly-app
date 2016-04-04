@@ -30,7 +30,7 @@
         </div>
 
         <div class="check" ng-click="arrived()">
-            <img src="img/check.png" alt="">
+            <img ng-src="{{checkSrc}}" alt="">
         </div>
     </div>
     <div class="card navigation" ng-show="showNavigation">
@@ -47,8 +47,8 @@
             Wil je {{currentSquare.name}} kopen voor {{currentSquare.price}} gouden munten?
         </div>
         <div class="buttons">
-            <img src="img/check.png" alt="" ng-click="buySquare()" class="check">
-            <img src="img/decline.png" alt="" ng-click="declineSquare()" class="decline">
+            <img ng-src="{{checkSrc}}" alt="" ng-click="buySquare()" class="check">
+            <img ng-src="{{declineSrc}}" alt="" ng-click="declineSquare()" class="decline">
         </div>
 
     </div>
@@ -60,7 +60,7 @@
             Je bent op het vakje van {{currentSquare.owner.displayName}} gekomen, {{currentSquare.name}}. Je moet {{currentSquare.rent}} gouden munten betalen.
         </div>
         <div class="buttons">
-            <img src="img/check.png" alt="" class="check" ng-click="pay()">
+            <img ng-src="{{checkSrc}}" alt="" class="check" ng-click="pay()">
         </div>
     </div>
     <div class="card confirmation" ng-show="showSelfBuy">
@@ -71,7 +71,7 @@
             Je bent op {{currentSquare.name}} gekomen, dit vakje is al van jouw, je hoeft niks te betalen.
         </div>
         <div class="check" ng-click="declineSquare()">
-            <img src="img/check.png" alt="">
+            <img ng-src="{{checkSrc}}" alt="">
         </div>
     </div>
     <div class="card confirmation" ng-show="showPayConfirmation">

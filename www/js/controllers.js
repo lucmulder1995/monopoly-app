@@ -104,6 +104,12 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
     };
 
     setInterval($scope.getLoc, 1000);
+    var checkImgSrc = "img/check.png";
+    var declineImgSrc = "img/decline.png";
+    var loadImgSrc = "img/loading-flower.gif";
+
+    $scope.checkSrc = checkImgSrc;
+    $scope.declineSrc = declineImgSrc;
 
     var checkForTurn = function () {
 
@@ -344,7 +350,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                     $scope.declineSquare();
                 } else {
                     //kopen
-
+                    $scope.checkSrc = loadImgSrc;
                     $.ajax({
                             type: "PUT",
                             url: apiURL + 'games/' + dataStorage.getGame()._id + '/squares/' + dataStorage.getCurrentSquare().id,
@@ -425,7 +431,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                                                 $scope.squares.push(square);
                                             }
                                         }
-
+                                        $scope.checkSrc = checkImgSrc;
                                         $scope.showYourturn = false;
                                         $scope.showNavigation = false;
                                         $scope.showBuy = false;
@@ -449,6 +455,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
 
 
             $scope.declineSquare = function () {
+                $scope.declineSrc = loadImgSrc;
                 $.ajax({
                         type: "PUT",
                         url: apiURL + 'games/' + dataStorage.getGame()._id,
@@ -509,6 +516,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                                 }
                             }
 
+                            $scope.declineSrc = declineImgSrc;
+
                             $scope.showYourturn = false;
                             $scope.showNavigation = false;
                             $scope.showBuy = false;
@@ -528,6 +537,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
             };
 
             $scope.pay = function () {
+                $scope.checkSrc = loadImgSrc;
 
                 $.ajax({
                         type: "PUT",
@@ -610,6 +620,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation)
                                             $scope.squares.push(square);
                                         }
                                     }
+
+                                    $scope.checkSrc = checkImgSrc;
 
                                     $scope.showYourturn = false;
                                     $scope.showNavigation = false;
