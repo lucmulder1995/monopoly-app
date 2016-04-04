@@ -31,6 +31,7 @@
     <plugin name="cordova-plugin-whitelist" spec="https://github.com/apache/cordova-plugin-whitelist.git" />
     <plugin name="cordova-plugin-device-motion" value="org.apache.cordova.AccelListener" spec="https://github.com/apache/cordova-plugin-device-motion.git"/>
     <plugin name="cordova-plugin-vibration" spec="https://github.com/apache/cordova-plugin-vibration.git"/>
+    <plugin name="cordova-plugin-inappbrowser" spec="https://github.com/apache/cordova-plugin-inappbrowser.git"/>
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>

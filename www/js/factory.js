@@ -60,19 +60,19 @@ myApp.factory('dataStorage', function () {
         },
         setUsername: function(username){
             data.username = username;
-            saveData;
+            saveData();
         },
         getUsername: function(){
             return data.username;
         },setPassword: function(password){
             data.password = password;
-            saveData;
+            saveData();
         },
         getPassword: function(){
             return data.password;
         },setShake: function(shake){
             data.shake = shake;
-            saveData;
+            saveData();
         },
         getShake: function(){
             return data.shake;
