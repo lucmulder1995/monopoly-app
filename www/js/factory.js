@@ -58,5 +58,18 @@ myApp.factory('dataStorage', function () {
         getCurrentSquare: function () {
             return data.currentSquare;
         },
+        setUsername: function(username){
+            data.username = username;
+            saveData;
+        },
+        getUsername: function(){
+            return data.username;
+        },setPassword: function(password){
+            data.password = password;
+            saveData;
+        },
+        getPassword: function(){
+            return data.password;
+        }
     };
 });

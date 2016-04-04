@@ -5,10 +5,11 @@
                 <h1>Inloggen</h1>
             </div>
             <div class="email">
-                <input type="text" ng-model="username" placeholder="gebruikersnaam">
+                <input type="text" ng-model="username" placeholder="gebruikersnaam" ng-change="saveUsername(username)">
             </div>
             <div class="password">
-                <input type="password" ng-model="password"  placeholder="wachtwoord">
+                <input type="password" ng-model="password"  placeholder="wachtwoord"  ng-change="savePassword(password)">
+            </div>
             <!--<button ng-click="login(username, password)">Local login</button>-->
             <div class="loginButton">
                 <img src="img/login.png" alt="" style="{{getLoginStyle()}}">

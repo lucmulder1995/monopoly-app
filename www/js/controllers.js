@@ -690,7 +690,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                 }
                             }
 
-                            $scope.declineSrc = declineImgSrc;
+                            $scope.checkSrc = checkImgSrck;
 
                             $scope.showYourturn = false;
                             $scope.showNavigation = false;
@@ -1262,6 +1262,18 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
     $scope.loginGoogle = function () {
         alert('loginGoogle');
 
+
+        $scope.username = dataStorage.getUsername();
+        $scope.password = dataStorage.getPassword();
+
+        $scope.savePassword = function(password){
+            dataStorage.setPassword(password);
+        }
+
+        $scope.saveUsername = function(username){
+            dataStorage.setPassword(username);
+        }
+
         var returnUrl = window.location.href.replace('login', '');
         alert(returnUrl);
         returnUrl = encodeURIComponent(returnUrl);
@@ -1278,5 +1290,6 @@ myApp.controller('LogoutCtrl', function ($scope, dataStorage) {
     $.get(apiURL + 'signout', function (data) {
         window.location.href = "#/app/login";
     });
+
 })
 
