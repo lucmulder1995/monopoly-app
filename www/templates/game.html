@@ -39,7 +39,7 @@
 
         </div>
     </div>
-    <div class="card buy" ng-show="showBuy">
+    <div class="card buy" ng-show="showBuy" on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
         <div class="image">
             <img ng-src="{{currentSquare.picture}}" alt="">
         </div>
