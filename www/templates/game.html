@@ -38,9 +38,9 @@
     </div>
     <div class="card buy" ng-show="showBuy">
         <div class="image">
-            <img ng-src="{{currentSquare.picture}}" alt="" on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
+            <img ng-src="{{currentSquare.picture}}" alt="">
         </div>
-        <div class="name">
+        <div class="name"  on-swipe-left="buySquare()" on-swipe-right="declineSquare()">
             Wil je {{currentSquare.name}} kopen voor {{currentSquare.price}} gouden munten?
         </div>
         <div class="buttons">
