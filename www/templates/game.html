@@ -67,8 +67,8 @@
         <div class="title">
             Je bent op {{currentSquare.name}} gekomen, dit vakje is al van jouw, je hoeft niks te betalen.
         </div>
-        <div class="check" ng-click="declineSquare()">
-            <img ng-src="{{checkSrc}}" alt="">
+        <div class="check">
+            <img ng-src="{{checkSrc}}" alt="" ng-click="acceptNoPay()">
         </div>
     </div>
     <div class="card confirmation" ng-show="showPayConfirmation">

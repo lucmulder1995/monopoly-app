@@ -419,6 +419,8 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                     $scope.showPayConfirmation = false;
                     $scope.showSelfBuy = true;
 
+                    $scope.startWatching($scope.acceptNoPay);
+
                 } else {
                     console.log('betalen');
                     $scope.showYourturn = false;
@@ -546,7 +548,89 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
             $scope.declineSquare = function () {
                 $scope.declineSrc = loadImgSrc;
-                // $scope.$apply();
+                $scope.$apply();
+
+                $.ajax({
+                        type: "PUT",
+                        url: apiURL + 'games/' + dataStorage.getGame()._id,
+                        statusCode: {
+                            403: function (data) {
+                                window.location.href = "#/app/login";
+                            },
+                            400: function (data) {
+                                console.log(data);
+                            }
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        data: {
+                            nextTurn: true
+                        }
+                    })
+                    .done(function (data) {
+                        var game = data;
+                        dataStorage.setGame(game);
+
+                        updateUser(function () {
+
+                            $scope.game = dataStorage.getGame();
+                            for (var u = 0; u < game.users.length; u++) {
+                                if (game.users[u].user._id == user._id) {
+                                    //user found
+                                    $scope.money = game.users[u].money;
+                                }
+                            }
+
+                            $scope.squares = [];
+
+                            for (var s = 0; s < game.streets.length; s++) {
+                                for (var sq = 0; sq < game.streets[s].squares.length; sq++) {
+
+                                    var square = game.streets[s].squares[sq];
+
+                                    square.userColours = [];
+
+                                    for (var u = 0; u < square.users.length; u++) {
+                                        for (var gu = 0; gu < game.users.length; gu++) {
+                                            if (square.users[u]._id == game.users[gu].user._id) {
+                                                square.userColours.push(game.users[gu].color);
+                                            }
+                                        }
+
+                                        if (square.users[u]._id == dataStorage.getUser()._id) {
+                                            dataStorage.setCurrentSquare(square);
+                                        }
+                                    }
+
+
+                                    $scope.squares.push(square);
+                                }
+                            }
+
+                            $scope.declineSrc = declineImgSrc;
+
+                            $scope.showYourturn = false;
+                            $scope.showNavigation = false;
+                            $scope.showBuy = false;
+                            $scope.showPayday = false;
+                            $scope.showBuyConfirmation = false;
+                            $scope.showPayConfirmation = false;
+                            $scope.showSelfBuy = false;
+                            $scope.$apply();
+
+                            socket.emit('nextTurn', game._id);
+
+                        })
+
+
+                    })
+
+            };
+
+            $scope.acceptNoPay = function () {
+                $scope.checkSrc = loadImgSrc;
+                $scope.$apply();
 
                 $.ajax({
                         type: "PUT",
