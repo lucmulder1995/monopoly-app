@@ -988,11 +988,11 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
         return "position: absolute; top: " + (screenheight * 0.6)  + "px; width: 100%;";
     }
 
-    $scope.getLoginButtonStyle = function(){
+    $scope.getSignupButtonStyle = function(){
         return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 19%; ";
     }
 
-    $scope.getSignupButtonStyle = function(){
+    $scope.getLoginButtonStyle = function(){
         return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 70%; ";
     }
 
@@ -1001,6 +1001,49 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
         $.ajax({
                 method: "POST",
                 url: apiURL + 'login',
+                statusCode: {
+                    400: function () {
+                        console.log("gebruikersnaam en/of wachtwoord is onjuist");
+                    }
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: {"username": username, "password": password}
+            })
+            .done(function (data) {
+                if (data.success) {
+                    var currentUser = data.user;
+
+                    // user = currentUser;
+
+                    dataStorage.setUser(currentUser);
+
+                    for (var g = 0; g < currentUser.games.length; g++) {
+                        var game = currentUser.games[g];
+
+                        if (game.startTime >= new Date() && game.endTime < new Date()) {
+                            console.log('game is live at the moment');
+                            console.log('active game: ', game);
+                            window.location.href = "#/app/game";
+                            return;
+                        }
+                    }
+
+                    console.log('no active game found, start new game');
+                    window.open('#/app/startGame', '_self ', 'location=yes');
+                    //window.location.href = "#/app/startGame";
+
+                }
+                console.log(data);
+            });
+    }
+
+    $scope.signup = function(username, password){
+        console.log('signup', username, password);
+        $.ajax({
+                method: "POST",
+                url: apiURL + 'signup',
                 statusCode: {
                     400: function () {
                         console.log("gebruikersnaam en/of wachtwoord is onjuist");
