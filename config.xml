@@ -45,7 +45,7 @@
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="https://github.com/apache/cordova-plugin-whitelist.git" />
-    <plugin name="Accelerometer" value="org.apache.cordova.AccelListener" />
+    <plugin name="cordova-plugin-device-motion" value="org.apache.cordova.AccelListener" spec="https://github.com/apache/cordova-plugin-device-motion.git"/>
     <feature name="Accelerometer">
         <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
     </feature>
