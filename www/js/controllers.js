@@ -50,126 +50,121 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $ionicPlatform) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion) {
 
     var user;
     var game;
 
     var motionOptions = {
         frequency: 100, // Measure every 100ms
-        deviation : 25  // We'll use deviation to determine the shake event, best values in the range between 25 and 30
+        deviation: 25  // We'll use deviation to determine the shake event, best values in the range between 25 and 30
     };
 
     // Current measurements
     $scope.measurements = {
-        x : null,
-        y : null,
-        z : null,
-        timestamp : null
+        x: null,
+        y: null,
+        z: null,
+        timestamp: null
     }
 
     // Previous measurements
     $scope.previousMeasurements = {
-        x : null,
-        y : null,
-        z : null,
-        timestamp : null
+        x: null,
+        y: null,
+        z: null,
+        timestamp: null
     }
 
     $scope.watch = null;
 
-    // Start measurements when Cordova device is ready
-    $ionicPlatform.ready(function() {
+    //Start Watching method
+    $scope.startWatching = function (callback) {
 
-        //Start Watching method
-        $scope.startWatching = function(callback) {
+        // Device motion configuration
+        $scope.watch = $cordovaDeviceMotion.watchAcceleration($scope.options);
 
-            // Device motion configuration
-            $scope.watch = $cordovaDeviceMotion.watchAcceleration($scope.options);
+        // Device motion initilaization
+        $scope.watch.then(null, function (error) {
+            console.log('Error');
+        }, function (result) {
 
-            // Device motion initilaization
-            $scope.watch.then(null, function(error) {
-                console.log('Error');
-            },function(result) {
+            // Set current data
+            $scope.measurements.x = result.x;
+            $scope.measurements.y = result.y;
+            $scope.measurements.z = result.z;
+            $scope.measurements.timestamp = result.timestamp;
 
-                // Set current data
-                $scope.measurements.x = result.x;
-                $scope.measurements.y = result.y;
-                $scope.measurements.z = result.z;
-                $scope.measurements.timestamp = result.timestamp;
+            // Detecta shake
+            $scope.detectShake(result, callback);
 
-                // Detecta shake
-                $scope.detectShake(result, callback);
+        });
+    };
 
-            });
-        };
+    // Stop watching method
+    $scope.stopWatching = function () {
+        $scope.watch.clearWatch();
+    }
 
-        // Stop watching method
-        $scope.stopWatching = function() {
-            $scope.watch.clearWatch();
+    // Detect shake method
+    $scope.detectShake = function (result, callback) {
+
+        //Object to hold measurement difference between current and old data
+        var measurementsChange = {};
+
+        // Calculate measurement change only if we have two sets of data, current and old
+        if ($scope.previousMeasurements.x !== null) {
+            measurementsChange.x = Math.abs($scope.previousMeasurements.x, result.x);
+            measurementsChange.y = Math.abs($scope.previousMeasurements.y, result.y);
+            measurementsChange.z = Math.abs($scope.previousMeasurements.z, result.z);
         }
 
-        // Detect shake method
-        $scope.detectShake = function(result, callback) {
+        // If measurement change is bigger then predefined deviation
+        if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation) {
+            $scope.stopWatching();  // Stop watching because it will start triggering like hell
+            console.log('shake detected');
+            callback();
+            setTimeout($scope.startWatching(), 1000);  // Again start watching after 1 sex
 
-            //Object to hold measurement difference between current and old data
-            var measurementsChange = {};
-
-            // Calculate measurement change only if we have two sets of data, current and old
-            if ($scope.previousMeasurements.x !== null) {
-                measurementsChange.x = Math.abs($scope.previousMeasurements.x, result.x);
-                measurementsChange.y = Math.abs($scope.previousMeasurements.y, result.y);
-                measurementsChange.z = Math.abs($scope.previousMeasurements.z, result.z);
+            // Clean previous measurements after succesfull shake detection, so we can do it next time
+            $scope.previousMeasurements = {
+                x: null,
+                y: null,
+                z: null
             }
 
-            // If measurement change is bigger then predefined deviation
-            if (measurementsChange.x + measurementsChange.y + measurementsChange.z > $scope.options.deviation) {
-                $scope.stopWatching();  // Stop watching because it will start triggering like hell
-                console.log('shake detected');
-                callback();
-                setTimeout($scope.startWatching(), 1000);  // Again start watching after 1 sex
-
-                // Clean previous measurements after succesfull shake detection, so we can do it next time
-                $scope.previousMeasurements = {
-                    x: null,
-                    y: null,
-                    z: null
-                }
-
-            } else {
-                // On first measurements set it as the previous one
-                $scope.previousMeasurements = {
-                    x: result.x,
-                    y: result.y,
-                    z: result.z
-                }
+        } else {
+            // On first measurements set it as the previous one
+            $scope.previousMeasurements = {
+                x: result.x,
+                y: result.y,
+                z: result.z
             }
-
         }
 
-    });
+    }
 
-    $scope.$on('$ionicView.beforeLeave', function(){
+    $scope.$on('$ionicView.beforeLeave', function () {
         $scope.watch.clearWatch(); // Turn off motion detection watcher
     });
 
 
     var updateUser = function (callback) {
         $.ajax({
-            method: "GET",
-            url: apiURL + 'users/currentUser',
-            statusCode: {
-                500: function () {
-                    console.log('Het is niet gelukt de user op te halen');
+                method: "GET",
+                url: apiURL + 'users/currentUser',
+                statusCode: {
+                    500: function () {
+                        console.log('Het is niet gelukt de user op te halen');
+                    },
+                    403: function () {
+                        window.location.href = "#/app/login";
+                    }
                 },
-                403: function () {
-                    window.location.href = "#/app/login";
+                xhrFields: {
+                    withCredentials: true
                 }
-            },
-            xhrFields: {
-                withCredentials: true
-            }
-        })
+            })
             .done(function (data) {
                 // user = data;
                 dataStorage.setUser(data);
@@ -181,12 +176,12 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
     $cordovaGeolocation
         .getCurrentPosition(posOptions)
         .then(function (position) {
-            $scope.lat  = position.coords.latitude
+            $scope.lat = position.coords.latitude
             $scope.long = position.coords.longitude
-        }, function(err) {
+        }, function (err) {
             // error
         });
-    $scope.getLoc = function() {
+    $scope.getLoc = function () {
         $cordovaGeolocation
             .getCurrentPosition(posOptions)
             .then(function (position) {
@@ -194,7 +189,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 $scope.long = position.coords.longitude
                 console.log('distance', distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long));
 
-                if($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 25){
+                if ($scope.showYourturn && distance($scope.lat, $scope.long, dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long) < 25) {
                     $scope.arrived();
                 }
 
@@ -293,7 +288,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                     //     dataStorage.setCurrentSquare($scope.squares[$scope.squares.indexOf(dataStorage.getCurrentSquare()) + $scope.turnAmount]);
                     //     console.log('niet over start');
                     // }
-
 
 
                     $scope.currentSquare = dataStorage.getCurrentSquare();
@@ -420,7 +414,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                     $scope.showPayConfirmation = false;
                     $scope.showSelfBuy = false;
 
-                } else if(dataStorage.getCurrentSquare().owner._id == dataStorage.getUser()._id) {
+                } else if (dataStorage.getCurrentSquare().owner._id == dataStorage.getUser()._id) {
                     console.log('eigen vakje');
                     $scope.showYourturn = false;
                     $scope.showNavigation = false;
@@ -432,7 +426,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
                     $scope.startWatching($scope.declineSquare);
 
-                }else {
+                } else {
                     console.log('betalen');
                     $scope.showYourturn = false;
                     $scope.showNavigation = false;
@@ -755,9 +749,9 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
     function distance(lat1, lon1, lat2, lon2) {
         var p = 0.017453292519943295;    // Math.PI / 180
         var c = Math.cos;
-        var a = 0.5 - c((lat2 - lat1) * p)/2 +
+        var a = 0.5 - c((lat2 - lat1) * p) / 2 +
             c(lat1 * p) * c(lat2 * p) *
-            (1 - c((lon2 - lon1) * p))/2;
+            (1 - c((lon2 - lon1) * p)) / 2;
 
         return 12742000 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
     }
@@ -1088,16 +1082,16 @@ myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
 myApp.controller('LoginCtrl', function ($scope, dataStorage) {
     var screenheight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
-    $scope.getLoginStyle = function(){
-        return "position: absolute; top: " + (screenheight * 0.6)  + "px; width: 100%;";
+    $scope.getLoginStyle = function () {
+        return "position: absolute; top: " + (screenheight * 0.6) + "px; width: 100%;";
     }
 
-    $scope.getSignupButtonStyle = function(){
-        return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 19%; ";
+    $scope.getSignupButtonStyle = function () {
+        return "position: absolute; top: " + (screenheight * 0.59) + "px;  width: 10%; height: " + (screenheight * 0.15) + "px; left: 19%; ";
     }
 
-    $scope.getLoginButtonStyle = function(){
-        return "position: absolute; top: " + (screenheight * 0.59)  + "px;  width: 10%; height: " + (screenheight * 0.15)  + "px; left: 70%; ";
+    $scope.getLoginButtonStyle = function () {
+        return "position: absolute; top: " + (screenheight * 0.59) + "px;  width: 10%; height: " + (screenheight * 0.15) + "px; left: 70%; ";
     }
 
     $scope.login = function (username, password) {
@@ -1143,7 +1137,7 @@ myApp.controller('LoginCtrl', function ($scope, dataStorage) {
             });
     }
 
-    $scope.signup = function(username, password){
+    $scope.signup = function (username, password) {
         console.log('signup', username, password);
         $.ajax({
                 method: "POST",
