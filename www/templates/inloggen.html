@@ -5,7 +5,7 @@
                 <h1>Inloggen</h1>
             </div>
             <div class="email">
-                <input type="text" ng-model="username" placeholder="gebruikersnaam" ng-change="saveUsername(username)">
+                <input type="text" ng-model="username" placeholder="gebruikersnaam" ng-change="hallo = true">
             </div>
             <div class="password">
                 <input type="password" ng-model="password"  placeholder="wachtwoord"  ng-change="savePassword(password)">
@@ -16,6 +16,7 @@
                 <div ng-click="signup(username, password)"   style="{{getSignupButtonStyle()}}"></div>
                 <div class="loginBtn" ng-click="login(username, password)"  style="{{getLoginButtonStyle()}}"></div>
             </div>
+            <div ng-show="hallo">hallo</div>
 
         </div>
     </ion-content>
