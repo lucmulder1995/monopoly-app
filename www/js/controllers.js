@@ -55,7 +55,7 @@ myApp.controller('MapCtrl', function($scope, $rootScope, $timeout, GoogleMapsSer
 
 });
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $cordovaVibration, GoogleMapsService, $rootScope) {
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $cordovaVibration, GoogleMapsService, $rootScope, $timeout) {
     GoogleMapsService.initService(document.getElementById("map"));
 
     var user;
