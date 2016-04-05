@@ -245,9 +245,14 @@ hr{
 
 .gameBoard .card.navigation .maps{
     width: 100%;
-    height: 70%;
+    height: 65%;
     margin-top: 10%;
     background-color: blue;
+}
+
+.gameBoard .navigation .check img {
+    margin-top: 10px;
+    width: 20%;
 }
 
 .gameBoard .card.buy{

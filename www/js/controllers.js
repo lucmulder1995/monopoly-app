@@ -398,6 +398,21 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             };
 
             $scope.goToNavigation = function () {
+
+                var map = new GMaps({
+                    div: '#map',
+                    lat: $scope.lat,
+                    lng: $scope.long
+                });
+
+                map.drawRoute({
+                    origin: [$scope.lat, $scope.long],
+                    destination: [dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long],
+                    strokeColor: '#131540',
+                    strokeOpacity: 0.6,
+                    strokeWeight: 6
+                });
+
                 $scope.showYourturn = false;
                 $scope.showNavigation = true;
                 $scope.showBuy = false;
