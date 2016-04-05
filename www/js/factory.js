@@ -88,7 +88,7 @@ myApp.factory('dataStorage', function () {
  */
 myApp.factory('GoogleMapsService', ['$rootScope', '$ionicLoading', '$timeout', '$window', '$document', 'ConnectivityService', function($rootScope, $ionicLoading, $timeout, $window, $document, ConnectivityService){
 
-    var apiKey = false,
+    var apiKey = "AIzaSyBo21lGW_l7ivm0X2JOBAzxXMLSAXRGJYk",
         map = null,
         mapDiv = null,
         directionsService,

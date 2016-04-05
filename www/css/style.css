@@ -250,10 +250,7 @@ hr{
     /*background-color: blue;*/
 /*}*/
 
-.gameBoard .navigation .check img {
-    margin-top: 10px;
-    width: 20%;
-}
+
 
 #map {
     width: 100%;
@@ -267,11 +264,8 @@ hr{
 
 .map-container {
     background-color: #fff;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 10px;
     width: 100%;
-    height: 100%;
+    height: 60%;
 }
 
 .gameBoard .card.buy{
@@ -323,6 +317,10 @@ hr{
 .gameBoard .card .check img{
     margin-top: 50%;
     width: 20%;
+}
+
+.gameBoard .navigation .check img {
+    margin-top: 10px;
 }
 
 .gameBoard .confirmation .check img{
