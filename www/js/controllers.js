@@ -50,7 +50,13 @@ myApp.controller('AppCtrl', function ($scope, $ionicModal, $timeout) {
     // Form data for the login modal
 })
 
-myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $cordovaVibration) {
+myApp.controller('MapCtrl', function($scope, $rootScope, $timeout, GoogleMapsService) {
+
+
+});
+
+myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation, $cordovaDeviceMotion, $cordovaVibration, GoogleMapsService) {
+    GoogleMapsService.initService(document.getElementById("map"));
 
     var user;
     var game;
@@ -399,19 +405,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
 
             $scope.goToNavigation = function () {
 
-                var map = new GMaps({
-                    div: '#map',
-                    lat: $scope.lat,
-                    lng: $scope.long
-                });
-
-                map.drawRoute({
-                    origin: [$scope.lat, $scope.long],
-                    destination: [dataStorage.getCurrentSquare().lat, dataStorage.getCurrentSquare().long],
-                    strokeColor: '#131540',
-                    strokeOpacity: 0.6,
-                    strokeWeight: 6
-                });
+                $scope.addRoute({"lat": $scope.lat, "lng": $scope.long}, {"lat": dataStorage.getCurrentSquare().lat, "lng": dataStorage.getCurrentSquare().long});
 
                 $scope.showYourturn = false;
                 $scope.showNavigation = true;
@@ -419,6 +413,54 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 $scope.showPayday = false;
                 $scope.showBuyConfirmation = false;
                 $scope.showPayConfirmation = false;
+            };
+
+            // Ideally, this initService should be called on page load and before code below is run
+            $scope.init = function() {
+                GoogleMapsService.initService(document.getElementById("map"));
+            };
+
+            $scope.journeyLegs = [];
+
+            // Call this method to add the route
+            $scope.addRoute = function(origin, destination) {
+                if (origin !== "" && destination !== "") {
+                    // Callout to Google to get route between first and last contact.
+                    // The 'legs' between these contact will give us the distance/time
+                    var waypts = [];
+                    GoogleMapsService.addRoute(origin, destination, waypts, true);
+                }
+            };
+
+            // Handle callback from Google Maps after route has been generated
+            var deregisterUpdateDistance = $rootScope.$on('googleRouteCallbackComplete', function(event, args) {
+                $scope.updateDistance();
+            });
+
+            // We'll add the route after the initService has loaded the Google Maps javascript
+            // We're only adding this timeout here because we've called the initService in the code above, and we need to give it time to load the js
+
+
+            // Deregister the handler when scope is destroyed
+            $scope.$on('$destroy', function() {
+                deregisterUpdateDistance();
+            });
+
+            $scope.updateDistance = function() {
+                $timeout(function() {
+                    // Get the route saved after callback from Google directionsService (to get route)
+                    var routeResponse = GoogleMapsService.getRouteResponse();
+                    if (routeResponse) {
+                        // We’ve only defined one route with waypoints (or legs) along it
+                        var route = routeResponse.routes[0];
+                        // The following is an example of getting the distance and duration for the last leg of the route
+                        var distance = route.legs[route.legs.length - 1].distance;
+                        var duration = route.legs[route.legs.length - 1].duration;
+                        console.log("distance.value = ", distance.value);
+                        console.log("duration.value = ", duration.value);
+                        console.log("duration.text = ", duration.text);
+                    }
+                });
             };
 
             $scope.arrived = function () {

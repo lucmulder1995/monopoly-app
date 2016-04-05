@@ -61,8 +61,8 @@
         <div class="title">
             Ga naar {{currentSquare.name}}
         </div>
-        <div class="maps" id="map">
-
+        <div class="map-container" ng-show="$root.enableMap">
+            <div id="map" data-tap-disabled="true"></div>
         </div>
         <div class="check" ng-click="arrived()">
             <img ng-src="{{checkSrc}}" alt="">
