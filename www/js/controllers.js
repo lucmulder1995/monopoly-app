@@ -274,7 +274,6 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                                 }
                             }
 
-
                             $scope.squares.push(square);
                         }
                     }
@@ -403,7 +402,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                 $scope.showNavigation = true;
                 $scope.showBuy = false;
                 $scope.showPayday = false;
-                $scope.showBuyConfirmation = true;
+                $scope.showBuyConfirmation = false;
                 $scope.showPayConfirmation = false;
             };
 

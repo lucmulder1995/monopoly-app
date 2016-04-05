@@ -27,14 +27,8 @@
             Ga nu naar {{currentSquare.name}}
         </div>
 
-        <div class="check" ng-click="arrived()">
+        <div class="check" ng-click="goToNavigation()">
             <img ng-src="{{checkSrc}}" alt="">
-        </div>
-    </div>
-    <div class="card navigation" ng-show="showNavigation">
-        Je hebt 3 gegooid, ga naar Centraal Station
-        <div class="maps">
-
         </div>
     </div>
     <div class="card buy" ng-show="showBuy">
@@ -63,6 +57,17 @@
             <img ng-src="{{checkSrc}}" alt="" class="check" ng-click="pay()">
         </div>
     </div>
+    <div class="card navigation" ng-show="showNavigation">
+        <div class="title">
+            Ga naar {{currentSquare.name}}
+        </div>
+        <div class="maps">
+            Kaart
+        </div>
+        <div class="check" ng-click="arrived()">
+            <img ng-src="{{checkSrc}}" alt="">
+        </div>
+    </div>
     <div class="card confirmation" ng-show="showSelfBuy">
         <div class="image">
             <!--<div class='sprite {{currentSquare.picture}}'></div>-->
@@ -73,21 +78,6 @@
         </div>
         <div class="check">
             <img ng-src="{{checkSrc}}" alt="" ng-click="acceptNoPay()">
-        </div>
-    </div>
-    <div class="card confirmation" ng-show="showPayConfirmation">
-        <div class="title">
-            Je betaling is gelukt!
-        </div>
-
-        <div class="message">
-            Je hebt nog 100 munten
-        </div>
-        <div class="image">
-
-        </div>
-        <div class="check" ng-click="goToNavigation()">
-            <img src="img/check.png" alt="">
         </div>
     </div>
 
