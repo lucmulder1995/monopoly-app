@@ -598,6 +598,12 @@ hr{
     font-size: 6vw;
 }
 
+.weatherImage{
+    transform: scale(0.3);
+    margin-top: -42vh;
+    margin-bottom: -11vh;
+}
+
 
 .sprite { background: url('../img/sprite.png') no-repeat top left; height: 300px;  }
 .sprite.cloud { background-position: 0 0; width: 715px; }
@@ -605,4 +611,4 @@ hr{
 .sprite.rain { background-position: -990px 0; width: 493px; }
 .sprite.snow { background-position: -1493px 0; width: 445px; }
 .sprite.sun { background-position: -1948px 0; width: 301px; }
-.sprite.tunder { background-position: -2259px 0; width: 302px; }
+.sprite.thunder { background-position: -2259px 0; width: 302px; }

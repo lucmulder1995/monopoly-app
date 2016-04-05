@@ -251,6 +251,9 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
                     if(dataStorage.getShake()){
                         $cordovaVibration.vibrate(500);
                     }
+
+                    $scope.checkSrc = checkImgSrc;
+
                     $scope.showYourturn = true;
                     $scope.showNavigation = false;
                     $scope.showBuy = false;
@@ -1053,7 +1056,7 @@ myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
         })
         .done(function (data) {
             $scope.weatherMessage = data.message;
-            $scope.pictureSrc = "img/" + data.picture;
+            $scope.pictureSrc = data.picture;
         })
 
     if (dataStorage.getUser() == undefined) {
