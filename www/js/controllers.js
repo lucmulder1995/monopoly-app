@@ -467,6 +467,7 @@ myApp.controller('GameCtrl', function ($scope, dataStorage, $cordovaGeolocation,
             };
 
             $scope.arrived = function () {
+                console.log('arrived');
                 if(dataStorage.getShake()){
                     $cordovaVibration.vibrate(100);
                     setTimeout(function(){
