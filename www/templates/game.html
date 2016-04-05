@@ -64,8 +64,8 @@
         <div class="map-container" ng-show="$root.enableMap">
             <div id="map" data-tap-disabled="true"></div>
         </div>
-        <div class="check" ng-click="arrived()">
-            <img ng-src="{{checkSrc}}" alt="">
+        <div class="check" >
+            <img ng-src="{{checkSrc}}" alt="" ng-click="arrived()">
         </div>
     </div>
     <div class="card confirmation" ng-show="showSelfBuy">
