@@ -919,7 +919,10 @@ myApp.controller('SettingsCtrl', function ($scope, dataStorage) {
 })
 
 myApp.controller('StartGameCtrl', function ($scope, dataStorage) {
-
+    $scope.$on('$ionicView.enter', function (e) {
+        checkForCurrentGame();
+    }
+        
     var updateUser = function (callback) {
         $.ajax({
                 method: "GET",
