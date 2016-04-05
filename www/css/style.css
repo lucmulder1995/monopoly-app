@@ -545,17 +545,35 @@ hr{
     line-height: 120%;
 }
 
-.settings{
+.settings {
     background-color: #E91E63;
     width: 100%;
     height: 100%;
+    padding: 10px;
 }
 
-.settings .title{
+.settings .title {
     font-family: 'Indie Flower', cursive;
     line-height: 120%;
     color: white;
+    font-size: 10vw;
+}
+
+.settings .content {
+    position: relative;
+    color: white;
+    font-family: 'Indie Flower', cursive;
     font-size: 7vw;
+}
+
+.settings .content label{
+    font-size: 7vw;
+}
+.settings .manual{
+    position: relative;
+    color: white;
+    font-family: 'Indie Flower', cursive;
+    font-size: 6vw;
 }
 
 
